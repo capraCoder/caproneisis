@@ -95,6 +95,7 @@ class ClusterManager:
         name: str,
         shards: int = 5,
         replicas: int = 1,
+        refresh_interval: str = "30s",
         mapping: Optional[dict] = None
     ) -> dict:
         """
@@ -104,6 +105,7 @@ class ClusterManager:
             name: Index name
             shards: Number of primary shards
             replicas: Number of replica shards
+            refresh_interval: Refresh interval (default "30s", use "-1" for bulk)
             mapping: Custom mapping (uses default if None)
 
         Returns:
@@ -115,7 +117,7 @@ class ClusterManager:
             "settings": {
                 "number_of_shards": shards,
                 "number_of_replicas": replicas,
-                "refresh_interval": "30s"
+                "refresh_interval": refresh_interval
             }
         }
 

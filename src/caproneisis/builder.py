@@ -89,7 +89,8 @@ class IndexBuilder:
         progress_interval: int = 100_000,
         thread_count: int = 4,
         shards: int = 5,
-        replicas: int = 1
+        replicas: int = 1,
+        refresh_interval: str = "-1"
     ):
         """
         Initialize the builder.
@@ -104,6 +105,7 @@ class IndexBuilder:
             thread_count: Threads for parallel_bulk
             shards: Number of primary shards
             replicas: Number of replica shards
+            refresh_interval: Index refresh interval (default "-1" = disabled for bulk)
         """
         self.index_name = index_name
         self.batch_size = batch_size
@@ -128,7 +130,8 @@ class IndexBuilder:
             api_key=api_key,
             basic_auth=basic_auth,
             shards=shards,
-            replicas=replicas
+            replicas=replicas,
+            refresh_interval=refresh_interval
         )
 
         # Initialize progress tracking

@@ -5,6 +5,22 @@ All notable changes to CaproneISIS will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.1.1] - 2026-01-12
+
+### Changed
+
+- **Configurable refresh_interval**: All constructors now accept `refresh_interval` parameter
+  - `CaproneIndex.__init__()`: default `"30s"` (normal operation)
+  - `IndexBuilder.__init__()`: default `"-1"` (disabled for bulk ingestion)
+  - `ClusterManager.create_index()`: default `"30s"`, configurable per index
+
+### Fixed
+
+- Hardcoded refresh_interval values replaced with configurable parameters
+- Vatican Protocol P1 fix: Performance tuning now fully user-controllable
+
+---
+
 ## [0.1.0] - 2026-01-12
 
 ### Added

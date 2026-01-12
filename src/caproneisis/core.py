@@ -85,6 +85,7 @@ class CaproneIndex:
         verify_certs: bool = True,
         shards: int = 5,
         replicas: int = 1,
+        refresh_interval: str = "30s",
         create_if_missing: bool = True
     ):
         """
@@ -98,11 +99,13 @@ class CaproneIndex:
             verify_certs: Verify SSL certificates
             shards: Number of primary shards (for scaling)
             replicas: Number of replica shards (for redundancy)
+            refresh_interval: How often to refresh index (default "30s", use "-1" for bulk)
             create_if_missing: Create index if it doesn't exist
         """
         self.index_name = index_name
         self.shards = shards
         self.replicas = replicas
+        self.refresh_interval = refresh_interval
 
         # Build connection kwargs
         conn_kwargs: Dict[str, Any] = {
@@ -127,7 +130,7 @@ class CaproneIndex:
             "settings": {
                 "number_of_shards": self.shards,
                 "number_of_replicas": self.replicas,
-                "refresh_interval": "30s"
+                "refresh_interval": self.refresh_interval
             },
             **self.INDEX_MAPPING
         }
