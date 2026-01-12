@@ -1,0 +1,61 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "caproneisis"
+version = "0.1.0"
+description = "Industrial-scale CDS/ISIS implementation using Elasticsearch"
+readme = "README.md"
+license = "MIT"
+authors = [
+    {name = "Caprazli", email = "caprazli@protonmail.com"}
+]
+requires-python = ">=3.9"
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "Intended Audience :: Science/Research",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: Database",
+    "Topic :: Text Processing :: Indexing",
+    "Topic :: Scientific/Engineering :: Information Analysis",
+]
+keywords = [
+    "cds-isis",
+    "elasticsearch",
+    "inverted-index",
+    "full-text-search",
+    "bibliography",
+    "datacite",
+    "doi",
+    "distributed",
+]
+dependencies = [
+    "elasticsearch>=8.0.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest",
+    "pytest-cov",
+]
+
+[project.urls]
+Homepage = "https://github.com/capraCoder/caproneisis"
+Documentation = "https://github.com/capraCoder/caproneisis#readme"
+Repository = "https://github.com/capraCoder/caproneisis"
+Issues = "https://github.com/capraCoder/caproneisis/issues"
+
+[project.scripts]
+caproneisis = "caproneisis.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+include = ["caproneisis*"]
