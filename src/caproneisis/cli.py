@@ -15,7 +15,6 @@ Usage:
 """
 
 import argparse
-import sys
 from typing import List, Optional
 
 
@@ -128,7 +127,7 @@ def cmd_build(args):
         replicas=args.replicas
     )
 
-    stats = builder.add_jsonl_files(
+    builder.add_jsonl_files(
         pattern=args.pattern,
         test_limit=args.limit,
         resume=not args.no_resume
@@ -198,10 +197,10 @@ def cmd_stats(args):
     print(f"Total records: {stats['total_records']:,}")
     print(f"Size: {stats['size_gb']:.2f} GB")
     print(f"Shards: {stats['shards']} primary, {stats['replicas']} replica")
-    print(f"\nTop years:")
+    print("\nTop years:")
     for year, count in list(stats['top_years'].items())[:5]:
         print(f"  {year}: {count:,}")
-    print(f"\nTop prefixes:")
+    print("\nTop prefixes:")
     for prefix, count in list(stats['top_prefixes'].items())[:5]:
         print(f"  {prefix}: {count:,}")
 

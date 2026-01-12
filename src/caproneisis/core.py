@@ -19,7 +19,7 @@ Complexity guarantees:
     - SCALE: Linear with shard count (horizontal scaling)
 """
 
-from typing import Optional, List, Dict, Any, Union
+from typing import Optional, List, Dict, Any
 from elasticsearch import Elasticsearch
 from elasticsearch.helpers import bulk
 

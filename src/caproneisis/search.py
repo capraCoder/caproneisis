@@ -135,7 +135,7 @@ class SearchInterface:
 
                 if query == ":stats":
                     stats = self.index.stats()
-                    print(f"\nIndex Statistics:")
+                    print("\nIndex Statistics:")
                     print(f"  Total records: {stats['total_records']:,}")
                     print(f"  Size: {stats['size_gb']:.2f} GB")
                     print(f"  Shards: {stats['shards']} primary, {stats['replicas']} replica")

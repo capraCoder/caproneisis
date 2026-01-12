@@ -7,7 +7,7 @@ name = "caproneisis"
 version = "0.1.1"
 description = "Industrial-scale CDS/ISIS implementation using Elasticsearch"
 readme = "README.md"
-license = "MIT"
+license = "Apache-2.0"
 authors = [
     {name = "Caprazli", email = "caprazli@protonmail.com"}
 ]
@@ -43,8 +43,10 @@ dependencies = [
 
 [project.optional-dependencies]
 dev = [
-    "pytest",
-    "pytest-cov",
+    "pytest>=7.4.0",
+    "pytest-cov>=4.1.0",
+    "ruff>=0.1.0",
+    "mypy>=1.5.0",
 ]
 
 [project.urls]
@@ -59,3 +61,32 @@ caproneisis = "caproneisis.cli:main"
 [tool.setuptools.packages.find]
 where = ["src"]
 include = ["caproneisis*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+python_classes = ["Test*"]
+python_functions = ["test_*"]
+addopts = [
+    "-ra",
+    "--strict-markers",
+    "--strict-config",
+    "--showlocals",
+]
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+
+[tool.ruff.lint]
+select = ["E", "F", "W"]
+ignore = ["E501"]  # Line too long - handled by formatter
+
+[tool.ruff.lint.per-file-ignores]
+"tests/*" = ["F401", "F811"]
+
+[tool.mypy]
+python_version = "3.10"
+warn_return_any = true
+warn_unused_configs = true
+ignore_missing_imports = true
